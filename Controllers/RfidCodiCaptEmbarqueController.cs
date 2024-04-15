@@ -32,7 +32,8 @@ namespace test_lester02.Controllers
             {
                 var report = ConsultaAgrupada(startDateTime, endDateTime);
 
-                headersList.Add("Acrónimo");
+                headersList.Add("Acronimo");
+                headersList.Add("Viaje");
                 headersList.Add("Cantidad");
 
                 ViewBag.Headers = headersList;
@@ -71,10 +72,11 @@ namespace test_lester02.Controllers
         {
             var report = _context.TblRfidCodiCaptEmbarques
                         .Where(r => r.FechaLectura >= startDate && r.FechaLectura <= endDate)
-                        .GroupBy(r => r.Acronimo)
+                        .GroupBy(r => new { r.Acronimo, r.Viaje})
                         .Select(g => new
                         {
-                            Acronimo = g.Key,
+                            Acronimo = g.Key.Acronimo,
+                            Viaje = g.Key.Viaje,
                             Cantidad = g.Count()
                         })
                         .ToList<Object>();
