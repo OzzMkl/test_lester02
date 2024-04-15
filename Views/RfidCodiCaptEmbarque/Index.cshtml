@@ -1,0 +1,36 @@
+﻿@model List<TblRfidCodiCaptEmbarque>
+
+
+<div class="container">
+
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title">Generar Reporte</h2>
+
+            <form asp-controller="RfidCodiCaptEmbarque" asp-action="GenerarReporte" method="post">
+                <div class="row justify-content-between">
+                    <div class="col">
+                        <label class="form-label" for="startDate">Fecha de Inicio:</label>
+                        <input class="form-control" type="date" id="startDate" name="startDate" required />
+
+                    </div>
+                    <div class="col">
+                        <label class="form-label" for="endDate">Fecha de Fin:</label>
+                        <input class="form-control" type="date" id="endDate" name="endDate" />
+                    </div>
+                    <div class="col">
+                        <label class="form-label" for="agrupar">¿Agrupar?</label>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" name="agrupar" value="true" role="switch" id="agrupar">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <label class="form-label" for="btnGenerarReporte">&nbsp;</label>
+                        <button class="btn btn-primary" id="btnGenerarReporte">Generar Reporte</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
