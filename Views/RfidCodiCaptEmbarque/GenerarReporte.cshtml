@@ -1,9 +1,20 @@
-﻿@*@model List<TblRfidCodiCaptEmbarque>*@
-@{
+﻿@{
     var report = ViewBag.Report as List<dynamic>;
     var headers = ViewBag.Headers as List<string>;
-    var agrupar = ViewBag.Agrupar as bool? ?? false;
-    string action = ViewBag.Agrupar ? "GenerarReporteAgrupadoExcel" : "GenerarReporteExcel";
+    var agrupar = ViewBag.Agrupar as string;
+    string action = "";
+    switch (agrupar)
+    {
+        case "agruparAcronimo":
+            action = "GenerarReporteAgrupadoExcel";
+            break;
+        case "agruparViaje":
+            action = "GenerarReporteAgrupadoNoViajeExcel";
+            break;
+        case "sinAgrupar":
+            action = "GenerarReporteExcel";
+            break;
+    }
 }
 
 <div class="container">
@@ -27,26 +38,40 @@
                 </thead>
                 <tbody>
                     @if(report != null){
-                        if(agrupar){
-                            foreach (var item in report)
-                            {
-                                <tr>
-                                    <td>@item.Acronimo</td>
-                                    <td>@item.Viaje</td>
-                                    <td>@item.Cantidad</td>
-                                </tr>
-                            }
-                        } else{
-                            foreach (var item in report)
-                            {
-                                <tr>
-                                    <td>@item.Codebar</td>
-                                    <td>@item.Acronimo</td>
-                                    <td>@item.FechaLectura</td>
-                                </tr>
-                            }
+                        switch(agrupar)
+                        {
+                            case "agruparAcronimo":
+                                foreach (var item in report)
+                                {
+                                    <tr>
+                                        <td>@item.Acronimo</td>
+                                        <td>@item.Viaje</td>
+                                        <td>@item.Cantidad</td>
+                                    </tr>
+                                }
+                                break;
+                            case "agruparViaje":
+                                foreach (var item in report)
+                                {
+                                    <tr>
+                                        <td>@item.Viaje</td>
+                                        <td>@item.Cantidad</td>
+                                        <td>@item.Fecha</td>
+                                    </tr>
+                                }
+                                break;
+                            case "sinAgrupar":
+                                foreach (var item in report)
+                                {
+                                    <tr>
+                                        <td>@item.Codebar</td>
+                                        <td>@item.Acronimo</td>
+                                        <td>@item.FechaLectura</td>
+                                    </tr>
+                                }
+                                break;
+
                         }
-                        
                     } else{
                         <tr>
                             <td class="text-center">

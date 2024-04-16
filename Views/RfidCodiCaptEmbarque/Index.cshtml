@@ -19,9 +19,26 @@
                         <input class="form-control" type="date" id="endDate" name="endDate" />
                     </div>
                     <div class="col">
-                        <label class="form-label" for="agrupar">¿Agrupar?</label>
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" name="agrupar" value="true" role="switch" id="agrupar">
+                        <label class="form-label">¿Agrupar por?</label>
+                        <div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="agrupar" id="sinAgrupar" value="sinAgrupar" checked>
+                                <label class="form-check-label" for="sinAgrupar">
+                                    Sin agrupar
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="agrupar" id="agruparAcronimo" value="agruparAcronimo">
+                                <label class="form-check-label" for="agruparAcronimo">
+                                    Agrupado por acronimo y secuencia de viaje
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="agrupar" id="agruparViaje" value="agruparViaje">
+                                <label class="form-check-label" for="agruparViaje">
+                                    Agrupado por viaje
+                                </label>
+                            </div>
                         </div>
                     </div>
                     <div class="col">
